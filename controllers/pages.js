@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('index', {title: 'TAMUSA ACM Homepage' });
+    res.render('index', {title: 'Lytle Animal Allies Homepage' });
 });
 
 module.exports = router;
