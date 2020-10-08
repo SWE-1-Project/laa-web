@@ -40,6 +40,9 @@ function getAnimals() {
 
         // Log the pet data
         console.log('pets', data);
+        var obj = data;
+        var myJSON = JSON.stringify(obj);
+        document.getElementById("dogs").innerHTML = myJSON;
 
     }).catch(function (err) {
 
