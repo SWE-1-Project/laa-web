@@ -1,13 +1,12 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-//const userController = require('../controllers/userController');
-const { userInfo } = require('os');
+const userController = require('../controllers/userController');
 
 const Category = require('../models/category');
 const Event = require('../models/event');
 const Post = require('../models/post');
-const Role = require('../models/role');
+const Role = require('../roles');
 const Tag = require('../models/tag');
 const User = require('../models/user');
 
@@ -219,9 +218,22 @@ router.post('/add-register', (req, res) => {
     });
 
 
+    router.post('/signup', userController.signup);
+ 
+    router.post('/login', userController.login);
+ 
+    router.get('/user/:userId', userController.allowIfLoggedin, userController.getUser);
+ 
+    router.get('/users', userController.allowIfLoggedin, userController.grantAccess('readAny', 'profile'), userController.getUsers);
+ 
+    router.put('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.updateUser);
+ 
+    router.delete('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), userController.deleteUser);
+ 
 
 
-    
+
+
 });
 
 module.exports = router;
