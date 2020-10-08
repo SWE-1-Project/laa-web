@@ -1,3 +1,98 @@
+/* Color SCSS Document */
+/* Background Colors */
+.black,
+.hover-black:hover {
+  color: #ffffff !important;
+  background-color: #000000 !important; }
+
+.white,
+.hover-white:hover {
+  color: #000000 !important;
+  background-color: #ffffff !important; }
+
+.primary-color,
+.primary-color:hover {
+  color: #ffffff !important;
+  background-color: #e82c0c !important; }
+
+.secondary-color,
+.hover-secondary-color:hover {
+  color: #ffffff !important;
+  background-color: #009C59 !important; }
+
+.tertiary-color,
+.hover-tertiary-color:hover {
+  color: #ffffff !important;
+  background-color: #b52309 !important; }
+
+.quaternary-color,
+.hover-quaternary-color:hover {
+  color: #ffffff !important;
+  background-color: #00E883 !important; }
+
+.quinary-color,
+.hover-quinary-color:hover {
+  color: #ffffff !important;
+  background-color: #4F0C00 !important; }
+
+/* Text Colors */
+.text-black,
+.hover-text-black:hover {
+  color: #000000 !important; }
+
+.text-white,
+.hover-text-white:hover {
+  color: #ffffff !important; }
+
+.text-primary-color,
+.hover-text-primary-color:hover {
+  color: #e82c0c !important; }
+
+.text-secondary-color,
+.hover-text-secondary-color:hover {
+  color: #009C59 !important; }
+
+.text-tertiary-color,
+.hover-text-tertiary-color:hover {
+  color: #b52309 !important; }
+
+.text-quaternary-color,
+.hover-text-quaternary-color:hover {
+  color: #00E883 !important; }
+
+.text-quinary-color,
+.hover-text-quinary-color:hover {
+  color: #4F0C00 !important; }
+
+/* Border Colors */
+.border-black,
+.hover-border-black:hover {
+  border-color: #000000 !important; }
+
+.border-white,
+.hover-border-white:hover {
+  border-color: #ffffff !important; }
+
+.border-primary-color,
+.hover-border-primary-color:hover {
+  border-color: #e82c0c !important; }
+
+.border-secondary-color,
+.hover-border-secondary-color:hover {
+  border-color: #009C59 !important; }
+
+.border-tertiary-color,
+.hover-border-tertiary-color:hover {
+  border-color: #b52309 !important; }
+
+.border-quaternary-color,
+.hover-border-quaternary-color:hover {
+  border-color: #00E883 !important; }
+
+.border-quinary-color,
+.hover-border-quinary-color:hover {
+  border-color: #4F0C00 !important; }
+
 @keyframes swing {
   0% {
     transform: rotate(0deg); }
@@ -393,3 +488,5 @@ body {
 
 .chiller-theme .sidebar-footer > a:last-child {
   border-right: none; }
+
+/* Footer Scss Document */

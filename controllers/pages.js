@@ -110,7 +110,7 @@ router.post('/submitPost', (req, res) => {
     const date = dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM TT");
     const post = new Post ({
         title: req.body.title,
-        author: req.body.author,
+        //author: req.body.author,
         date: date,
         category: req.body.category,
         tags: req.body.tags,
@@ -174,8 +174,8 @@ router.post('/add-register', (req, res) => {
         }
         if (doc == null) {
             User.collection.insertOne(user);
-            res.render('/', {
-                        title: 'Home'
+            res.render('/index', {
+                        title: 'Lytle Animal Allies'
                     });
         } else {
             res.render('register', {
