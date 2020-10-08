@@ -5,6 +5,7 @@ function getAnimals() {
     var secret = 'fsYBRCekV4CmGOJTguA735YLrTbDpwcHJTYhImyi';
     var org = 'TX1318';
     var status = 'adoptable';
+    var type = 'Dog'
 
     fetch('https://api.petfinder.com/v2/oauth2/token', {
         method: 'POST',
@@ -25,7 +26,7 @@ function getAnimals() {
         // Return a second API call
         // This one uses the token we received for authentication
         return fetch('https://api.petfinder.com/v2/animals?organization=' + org + '&status=' + status, {
-            headers: {
+		    headers: {
                 'Authorization': data.token_type + ' ' + data.access_token,
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
@@ -42,8 +43,8 @@ function getAnimals() {
         console.log('pets', data);
         var obj = data;
         var myJSON = JSON.stringify(obj);
+        var length = Object.keys(myJSON).length;
         document.getElementById("dogs").innerHTML = myJSON;
-
     }).catch(function (err) {
 
         // Log any errors

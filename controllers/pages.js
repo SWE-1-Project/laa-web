@@ -4,6 +4,13 @@ const bodyParser = require('body-parser');
 //const userController = require('../controllers/userController');
 const { userInfo } = require('os');
 
+const Category = require('../models/category');
+const Event = require('../models/event');
+const Post = require('../models/post');
+const Role = require('../models/role');
+const Tag = require('../models/tag');
+const User = require('../models/user');
+
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -130,6 +137,91 @@ router.get('/adoption', (req, res) => {
 
 
     res.render('adoption', {title: 'Adopt' });
+});
+
+router.get('/register', (req, res) => {
+    res.render('register', {title: 'Register'});
+});
+
+
+router.post('/add-register', (req, res) => {
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const address1 = req.body.address1;
+    const address2 = req.body.address2;
+    const city = req.body.city;
+    const state = req.body.state;
+    const zipCode = req.body.zipCode;
+    const email = req.body.email;
+    const password = req.body.password;
+    var user = {
+        firstName,
+        lastName,
+        address: {
+            address1,
+            address2,
+            city,
+            state,
+            zipCode
+        },
+        email,
+        password
+    }
+    User.findOne({
+        email: req.body.email
+    }, function (err, doc) {
+        if (err) {
+            console.log(err);
+        }
+        if (doc == null) {
+            User.collection.insertOne(user);
+            res.render('/', {
+                        title: 'Home'
+                    });
+        } else {
+            res.render('register', {
+                title: 'Register',
+                message: 'That email address is already registered.'
+            });
+        }
+    });
+
+    router.post('/check-signIn', (req, res) => {
+        const email = req.body.email;
+        const password = req.body.password;
+        User.findOne({
+            email: req.body.email
+        }, function (err, doc) {
+            if (err) {
+                console.log(err);
+            }
+            if (doc == null) {
+                res.render('register', {
+                            title: 'Register',
+                            message: 'Please register for an account.'
+                        });
+            } else {
+                User.findOne({
+                    email: req.body.email
+                }, function (err, doc) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.render('/', {
+                                    user: doc,
+                                    title: 'Home',
+                                });
+
+                    }
+                });
+            }
+        });
+    });
+
+
+
+
+    
 });
 
 module.exports = router;
