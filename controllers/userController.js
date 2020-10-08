@@ -1,4 +1,4 @@
-const User = require('../models/userModel');
+const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -148,3 +148,4 @@ exports.allowIfLoggedin = async (req, res, next) => {
             } catch (error) {
                 next(error);
             }
+        }
