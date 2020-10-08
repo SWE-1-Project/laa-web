@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const userController = require('../controllers/userController');
+//const userController = require('../controllers/userController');
 const { userInfo } = require('os');
 
 const router = express.Router();
@@ -125,6 +125,12 @@ router.post('/submitPost', (req, res) => {
 
 });
 
+router.get('/adoption', (req, res) => {
+    
+
+
+    res.render('adoption', {title: 'Adopt' });
+});
 
 module.exports = router;
 
