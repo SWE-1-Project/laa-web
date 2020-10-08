@@ -218,7 +218,7 @@ router.post('/add-register', (req, res) => {
     });
 
 
-    router.post('/signup', userController.signup);
+    router.post('/register', userController.signup);
  
     router.post('/login', userController.login);
  
