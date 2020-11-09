@@ -1,0 +1,17 @@
+<%- include('partials/head.ejs') %>
+<%- include('partials/header.ejs') %>
+<div class="container-fluid view intro-2" onload="getAnimals()">
+    <div class="row">
+        <div class="col-8" offset="2">
+            <h1>Adoption</h1>
+            <button onclick="getAnimals()">Click Me</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12" id="dogs">
+
+        </div>
+    </div>
+</div>
+<script src="/assets/js/apiCall.js"></script>
+<%- include('partials/footer.ejs') %>

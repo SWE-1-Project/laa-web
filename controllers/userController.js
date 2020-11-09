@@ -119,12 +119,12 @@ exports.deleteUser = async (req, res, next) => {
 
 const {
     roles
-} = require('../roles')
+} = require('./role')
 
 exports.grantAccess = function (action, resource) {
     return async (req, res, next) => {
         try {
-            const permission = roles.can(req.user.role)[action](resource);
+            const permission = roles.can(req.user.roles)[action](resource);
             if (!permission.granted) {
                 return res.status(401).json({
                     error: "You don't have enough permission to perform this action"

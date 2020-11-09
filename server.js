@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use('/', pagesRouter);
-
+/*
 app.use(async (req, res, next) => {
   if (req.headers["x-access-token"]) {
    const accessToken = req.headers["x-access-token"];
@@ -30,7 +30,7 @@ app.use(async (req, res, next) => {
    next(); 
   } 
  });
-
+*/
 mongoose.connect('mongodb://localhost:27017/BlogDB', {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => {
         app.listen(3000, () => {
