@@ -6,5 +6,5 @@ npm start
 ```
 URL:
 ```
-localhost:300
+localhost:3000
 ```
