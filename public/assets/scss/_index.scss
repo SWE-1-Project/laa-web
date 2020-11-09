@@ -203,11 +203,13 @@
     text-align: center;
     
     .video-wrap {
-        background: url("/assets/img/video-bg.jpg") center;
-        background-size: cover;
+        background: url("/assets/img/Outside Cattery.jpg") center !important;
+        background-size: contain !important;
+        height: 52vh;
         
         .overlay-bg {
-            background-color: rgba(0, 0, 0, 0.2);
+            background-color: $blackColor;
+            opacity: 0.35;
         }
         
         .play-btn {
@@ -216,28 +218,58 @@
     }
 }
 
+/* Process SCSS */
+
 .process-area {
-  background-color: #f9f9ff;
+    background-color: $tertiaryColor;
+    .single-process {
+        .fa {
+            -webkit-transition: all 0.3s ease 0s;
+            -moz-transition: all 0.3s ease 0s;
+            -o-transition: all 0.3s ease 0s;
+            transition: all 0.3s ease 0s;
+        }
+        h4 {
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
+        .fa:hover {
+            color: quaternaryColor;
+        }
+    }    
 }
 
-.process-area .single-process .lnr {
-  font-size: 35px;
-  -webkit-transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+/* Call To Action SCSS */
+
+.calltoaction-area {
+    background: url("/assets/img/head2headDogWoman.jpeg") center;
+    background-size: cover;
+    text-align: center;
+    
+    .overlay-bg {
+        background-color: $secondaryColor;
+        opacity: 0.75;
+    }
+    
+    h1 {
+         z-index: 2;
+    }
+    p {
+        margin: 1.5rem 0;
+        max-width: 52rem;
+        display: inline-block;
+        z-index: 2;
+    }
+    .header-btn {
+        margin: .75rem;
+        z-index: 2;
+    }
 }
 
-.process-area .single-process h4 {
-  margin-top: 25px;
-  margin-bottom: 20px;
+@media (max-width: 392px) {
+    .calltoaction-area .flex-row {
+        flex-direction: column !important;
+    }
 }
 
-.process-area .single-process:hover {
-  cursor: pointer;
-}
-
-.process-area .single-process:hover .lnr {
-  color: #fab700;
-}
 

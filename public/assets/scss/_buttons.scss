@@ -17,7 +17,11 @@
     transition: all 0.3s ease 0s !important;
 }
 
-
+.primary-btn:hover {
+    border: 1px solid $whiteColor !important;
+    background: transparent !important;
+    color: $whiteColor !important;
+}
 
 .header-btn {
     background: $whiteColor !important;
