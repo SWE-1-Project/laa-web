@@ -3,6 +3,11 @@ const Schema = mongoose.Schema;
 
 //What to store in the database
 const UserSchema = new Schema ({
+    username: {
+        type: String,
+        required: true,
+        trim: true
+    },
     email: {
         type: String,
         required: true,
