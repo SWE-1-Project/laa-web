@@ -1,120 +1,95 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
-<div class="container-fluid mt-5">
-    <div class="row">
-        <div class="col-sm-5 left-wrapper">
-            <div class="event-banner-wrapper">
-                <div class="logo">
-                    <h1>Events</h1>
-                </div>
-            
-                <h2>
-                Music<br>Concert Live
-                <span>10 April 2017, 8:00 PM</span>
-                </h2>
-                <p>created by <a href="http://www.pixpalette.com" target="_blank">pixpalette</a></p>
-            </div>
-        </div>
-        <div class="col-sm-7 right-wrapper">
-            <div class="event-ticket-wrapper">
-                
-                <div class="event-tab">
-            
-              <!-- Nav tabs -->
-              <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#buyTicket" aria-controls="buyTicket" role="tab" data-toggle="tab">Buy Tickets</a></li>
-                <li role="presentation"><a href="#venue" aria-controls="venue" role="tab" data-toggle="tab">Venue</a></li>
-               
-                
-                <li role="presentation"><a href="#termCondition" aria-controls="termCondition" role="tab" data-toggle="tab">Terms & Conditions</a></li>
-              </ul>
-            
-              <!-- Tab panes -->
-              <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade in active" id="buyTicket">
+<div class="mobile-wrapper">
 
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="venue">
-                    <h4> Lorem ipsum dolor sit amet,<br> consectetur adipiscing elit,<br> sed do eiusmod<br> Pune 411058</h4><br>
-                    <iframe src="https://www.google.com/maps/d/embed?mid=1UMEBYRnM0KZhrhqikVv3YigwUd0" width="640" height="300"></iframe>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="termCondition">
-                       <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h4>
-                    <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h4>
-                    <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h4>
-                </div>
-              </div>
-            
-            </div>
-            
-                <div class="cart">
-            <div class="row">
-                <div class="col-xs-6">
-                    <p> 
-                        <span class="ticket-count">0</span> Tickets <span class="divider"></span> Total: Rs. <span class="total-amount">0</span></p>
-                </div>
-                <div class="col-xs-6">
-                    <div class="text-right">
-                        <a class="btn disabled" data-toggle="modal" data-target="#ticket-details">PROCEED</a>
-                    </div>
-                </div>
-            </div>
-            </div>
-                   
-            </div>
+  <!--======= Header =======-->
+
+  <header class="header">
+     <div class="container">
+        <span>Welcome Back!</span>
+        <h1>Calendar Plan</h1>
+
+        <div class="menu-toggle">
+           <div>
+              <span></span>
+              <span></span>
+              <span></span>
+           </div>
         </div>
-    </div>
+     </div>
+  </header>
+
+  <!--======= Today =======-->
+
+  <section class="today-box" id="today-box">
+     <span class="breadcrumb">Today</span>
+     <h3 class="date-title">May 15, 2018</h3>
+
+     <div class="plus-icon">
+        <i class="ion ion-ios-add"></i>
+     </div>
+  </section>
+
+  <!--======= Upcoming Events =======-->
+
+  <section class="upcoming-events">
+     <div class="container">
+        <h3>
+           Lastest Events
+
+        </h3>
+        <div class="events-wrapper">
+           <div class="event">
+              <i class="ion ion-ios-flame hot"></i>
+              <h4 class="event__point">11:00 am</h4>
+              <span class="event__duration">in 30 minutes.</span>
+              <p class="event__description">
+                 Monday briefing with the team (...).
+              </p>
+           </div>
+           <div class="event">
+              <i class="ion ion-ios-flame done"></i>
+              <h4 class="event__point">12:00 pm</h4>
+              <span class="event__duration">in 1 hour.</span>
+              <p class="event__description">
+                 Lunch with Paul Mccartney @Burgers House!
+              </p>
+           </div>
+           <div class="event active">
+              <i class="ion ion-ios-radio-button-on icon-in-active-mode"></i>
+              <h4 class="event__point">14:00 pm</h4>
+              <p class="event__description">
+                 Meet clients from project.
+              </p>
+           </div>
+           <div class="event">
+              <i class="ion ion-ios-flame-outline upcoming"></i>
+              <h4 class="event__point">20:45 pm</h4>
+              <span class="event__duration">in 45 minutes.</span>
+              <p class="event__description">
+                 Watch sci-fi series.
+              </p>
+           </div>
+           <div class="event">
+              <i class="ion ion-ios-flame-outline upcoming"></i>
+              <h4 class="event__point">23:15 pm</h4>
+              <span class="event__duration">in 20 minutes.</span>
+              <p class="event__description">
+                 Customer dialog on Skype.
+              </p>
+           </div>
+        </div>
+        <button class="add-event-button">
+           <span class="add-event-button__title">Add Event</span>
+
+           <span class="add-event-button__icon">
+              <i class="ion ion-ios-star-outline"></i>
+           </span> 
+
+
+        </button>
+     </div>
+  </section>
 </div>
 
-<!-- Modal -->
-<div class="modal right fade" id="ticket-details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-  <!--<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title" id="myModalLabel">Share your contact Details</h4>
-  </div>-->
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <img src="images/icons/cancel.png">
-    </button>
-    <h4 class="modal-title">Your Tickets</h4>
-  </div>
-  <div class="modal-body">
-    
-    <div class="cart-information">
-            <div class="ticket-type"></div>
-              <ul>
-                <li>Tickets: <span class="ticket-count"></span></li>
-                <li>Price: <span class="ticket-amount"></span></li>
-                <hr>
-                <li>Total: <span class="total-amount"></span></li>
-            </ul>
-        </div>
-        
-        <div class="contactForm">	
-            <h3>Share your contact Details</h3>
-            <form>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Enter your name">
-              </div>
-              
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Enter your Email ID">
-              </div>
-              
-              <div class="form-group">
-                 <input type="text" class="form-control" placeholder="Enter your Mobile No.">
-              </div>
-              
-              <a type="submit" class="btn">Proceed to Payment</a>
-            </form>
-        </div>
-    
-    
-    
-  </div>
-</div>
-</div>
-</div>
 <%- include('partials/footer.ejs') %>

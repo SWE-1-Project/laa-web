@@ -26,19 +26,13 @@
 <div class="image-carousel-area">
  
             <div class="active-image-carousel  owl-carousel owl-theme">
+                <%  var pets = body;
+                     pets.forEach((pets) => { 
+                %>
                 <div class="single-image-carousel">
-                    <img class="img-fluid" src="/assets/img/carousel/christopher.jpg" alt="">
+                    <img class="img-fluid" src="<%= pets.photos[0].full %>" alt="<%= pets.name %>">
                 </div>
-                <div class="single-image-carousel item">
-                    <img class="img-fluid" src="/assets/img/carousel/cosette.jpg" alt="">
-                </div>
-                <div class="single-image-carousel item">
-                    <img class="img-fluid" src="/assets/img/carousel/louie.jpg" alt="">
-                </div>
-                <div class="single-image-carousel item">
-                    <img class="img-fluid" src="/assets/img/carousel/charleston.jpg" alt="">
-                </div>
-      
+                <% }) %>
         </div>
     </div>
 </section>

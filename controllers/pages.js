@@ -92,7 +92,8 @@ router.get('/blog', (req, res) => {
             date: -1
         })
         .then(results => {
-            res.render('blog', {
+            res.render('blog', 
+            {
                 posts: results,
                 title: 'Blog'
             });
