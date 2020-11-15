@@ -1,14 +1,20 @@
 !(function ($) {
-      // menu scrolling effect to solid color
+    
+    // hamburger menu show navigation
+    $(document).ready(function () {
+        $(".menu-icon").on("click", function () {
+            $("nav ul").toggleClass("showing");
+        });
+    });
+    
+    // menu scrolling effect to solid color
     $(window).on("scroll", function () {
         if ($(window).scrollTop()) {
-            $('nav-menu-container').addClass('text-secondary-color');
-            $('#header').addClass('.header-scrolled');
+            $('nav').addClass('nav-on-scroll');
         } else {
-            $('nav-menu-container').removeClass('text-secondary-color');
-            $('#header').removeClass('.header-scrolled');
+            $('nav').removeClass('nav-on-scroll');
         }
-    });
+    })
     
     
     
