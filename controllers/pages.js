@@ -3,7 +3,6 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const Pet = require('./api-request');
 const mongoose = require('mongoose');
-
 //const connBlogDB = mongoose.connect('mongodb://localhost:27017/BlogDB');
 
 const Post = require('../models/post');
@@ -70,6 +69,8 @@ router.get('/createEvent', (req, res) => {
         res.render('createEvent', {
             title: 'Create an Event'
         });
+    } else {
+        res.status(403).end();
     }
 });
 
@@ -138,17 +139,18 @@ router.get('/blog', (req, res) => {
 router.get('/createPost', (req, res) => {
     const permission = ac.can(req.user.role).createAny('event');
     if (permission.granted) {
-    const title = req.body.title;
-
-    Category.find() 
-        .then(results => {
-            res.render('createPost', 
-                {
-                    categories: results,
-                    title: 'Blog'
-                });
-        })
-        .catch(err => console.log(err));
+        const title = req.body.title;
+        Category.find() 
+            .then(results => {
+                res.render('createPost', 
+                    {
+                        categories: results,
+                        title: 'Blog'
+                    });
+            })
+            .catch(err => console.log(err));
+    } else {
+        res.status(403).end();
     }
 });
 
@@ -312,26 +314,6 @@ router.post('/submitRegister', (req, res) => {
             }
         });
     });
-
-    
-
-
-    router.post('/register', userController.signup);
-
-    router.post('/login', userController.login);
-
-    router.get('/user/:userId', userController.allowIfLoggedin, userController.getUser);
-
-    router.get('/users', userController.allowIfLoggedin, userController.grantAccess('readAny', 'profile'), userController.getUsers);
-
-    router.put('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.updateUser);
-
-    router.delete('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), userController.deleteUser);
-
-
-
-
-
 });
 
 module.exports = router;
