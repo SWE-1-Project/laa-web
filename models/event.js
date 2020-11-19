@@ -11,7 +11,7 @@ var eventSchema = new mongoose.Schema ({
         type: String
     },
     eventDate: {
-        type: String
+        type: Date
     },
     eventTime: {
         type: String

@@ -37,16 +37,38 @@ router.get('/volunteer', (req, res) => {
     });
 });
 
-router.get('/event', (req, res) => {
-    res.render('event', {
-        title: 'Events'
+router.get('/donate', (req, res) => {
+    res.render('donate', {
+        title: 'Donate'
     });
+});
+
+router.get('/contact', (req, res) => {
+    res.render('contact', {
+        title: 'Contact Us'
+    });
+});
+
+router.get('/event', (req, res) => {
+    const dateFormat = require('dateformat');
+    const date = dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM TT");
+    
+    Event.find().sort({date: -1}).then(results => {
+        res.render('event', 
+        {
+            events: results,
+            date: date,
+            title: 'Events'
+        });
+    })
+    .catch(err => console.log(err));
 });
 
 router.get('/createEvent', (req, res) => {
     res.render('createEvent', {
         title: 'Create an Event'
     });
+    
 });
 
 router.post('/submitEvent', (req, res) => {

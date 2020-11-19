@@ -10,9 +10,9 @@
     // menu scrolling effect to solid color
     $(window).on("scroll", function () {
         if ($(window).scrollTop()) {
-            $('nav').addClass('nav-on-scroll');
+            $('nav').addClass('nav-color');
         } else {
-            $('nav').removeClass('nav-on-scroll');
+            $('nav').removeClass('nav-color');
         }
     })
     
