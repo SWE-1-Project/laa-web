@@ -174,9 +174,9 @@ router.post('/submitPost', (req, res) => {
             date: -1
         })
         .then(results => {
-            res.render('submitPost', {
+            res.render('blog', {
                 posts: results,
-                title: 'Submitted Post'
+                title: 'Submitted blog'
             });
         })
         .catch(err => console.log(err));
