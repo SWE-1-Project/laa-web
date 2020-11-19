@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const AccessControl = require("accesscontrol");
+const ac = new AccessControl();
 const Schema = mongoose.Schema;
 
 //What to store in the database
@@ -13,8 +15,8 @@ const userSchema = new Schema ({
         required: true
     },
     role: {
-        type: String,
-        default: 'basic',
+        type: Object,
+        default: ac.grant('basic'),
         enum: ['basic', 'contributor', 'admin']
     }, 
     accessToken: {

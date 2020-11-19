@@ -14,6 +14,7 @@ const Tag = require('../models/tag');
 const Contact = require('../models/contact');
 const Role = require('../models/role');
 const { AccessControl } = require('accesscontrol');
+const user = require('../models/user');
 //var db = require('../models');
 
 const router = express.Router();
@@ -84,12 +85,12 @@ router.post('/submitEvent', (req, res) => {
     const eTime = dateFormat(new Date(), "h:MM TT");
     const event = new Event({
         title: req.body.title,
-        author: req.body.author,
+        author: User.ObjectId,
         date: date,
         eventDate: date,
         eventTime: eTime,
-        category: req.body.category,
-        tags: req.body.tags,
+        category: Category.ObjectId,
+        tags: Tag.ObjectId,
         mainImage: req.body.mainImage,
         content: req.body.content
     });
@@ -117,9 +118,9 @@ router.get('/blog', (req, res) => {
     const date = dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM TT");
     
     Post.find().sort({date: -1}).then(results => {
-        User.findOne({author: req.body.author}).then(user => {
-            Category.findOne({titleCategory: req.body.titleCategory}).then(category => {
-                Tag.findOne({titleTag: req.body.titleTag}).then(tag => {
+        User.findOne({author: User.firstName}).then(user => {
+            Category.findOne({titleCategory: Category.titleCategory}).then(category => {
+                Tag.findOne({titleTag: Tag.titleTag}).then(tag => {
                     res.render('blog',
                     {
                         posts: results,
@@ -274,8 +275,8 @@ router.post('/submitRegister', (req, res) => {
         }
         if (doc == null) {
             User.collection.insertOne(user);
-            res.render('/', {
-                title: 'Lytle Animal Allies'
+            res.render('', {
+                title: 'Registed for Lytle Animal Allies'
             });
         } else {
             res.render('register', {
@@ -306,9 +307,9 @@ router.post('/submitRegister', (req, res) => {
                     if (err) {
                         console.log(err);
                     } else {
-                        res.render('/', {
+                        res.render('', {
                             user: doc,
-                            title: 'Signed into Lytle Animal Allies Homepage',
+                            title: 'Signed into Lytle Animal Allies',
                         });
                     }
                 });

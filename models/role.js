@@ -1,9 +1,9 @@
 const AccessControl = require("accesscontrol");
+const User = require("./user");
 const ac = new AccessControl();
 
-//Seems to define methods accessble based on User model roles
 exports.roles = (function () {
-    ac.grant('basic')//.grant defines role
+    ac.grant('basic')
     .readAny('post')
     .readAny('event')
     .readAny('profile')
@@ -23,6 +23,6 @@ exports.roles = (function () {
     .updateAny('event')
     .updateAny('profile')
     .deleteAny('profile')
-
+    
     return ac;
 })();
