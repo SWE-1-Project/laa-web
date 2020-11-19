@@ -19,6 +19,7 @@ const Contact = require('../models/contact');
 const router = express.Router();
 
 router.get('/', (req, res) => {
+
     res.render('index', {
         title: 'Lytle Animal Allies Homepage'
     });
@@ -27,6 +28,12 @@ router.get('/', (req, res) => {
 router.get('/about', (req, res) => {
     res.render('about', {
         title: 'About Us'
+    });
+});
+
+router.get('/volunteer', (req, res) => {
+    res.render('volunteer', {
+        title: 'Volunteer'
     });
 });
 
@@ -273,7 +280,7 @@ router.post('/add-register', (req, res) => {
                     } else {
                         res.render('/', {
                             user: doc,
-                            title: 'Home',
+                            title: 'Lytle Animal Allies Homepage',
                         });
 
                     }

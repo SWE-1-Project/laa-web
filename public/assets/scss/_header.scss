@@ -31,9 +31,10 @@ nav {
 
     li {
       display: inline-block;
-      padding: 1rem 2.5rem;
+      padding: 1rem 1.5rem;
 
       a {
+        background-color: transparent !important;
         text-decoration: none;
         color: $whiteColor !important;
         font-size: 1em;
