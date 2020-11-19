@@ -13,7 +13,7 @@ const Category = require('../models/category');
 const Tag = require('../models/tag');
 
 const Contact = require('../models/contact');
-//const Role = require('../role');
+const Role = require('../models/role');
 //var db = require('../models');
 
 const router = express.Router();
@@ -65,10 +65,12 @@ router.get('/event', (req, res) => {
 });
 
 router.get('/createEvent', (req, res) => {
-    res.render('createEvent', {
-        title: 'Create an Event'
-    });
-    
+    const permission = ac.can(req.user.role).createAny('event');
+    if (permission.granted) {
+        res.render('createEvent', {
+            title: 'Create an Event'
+        });
+    }
 });
 
 router.post('/submitEvent', (req, res) => {
@@ -81,7 +83,7 @@ router.post('/submitEvent', (req, res) => {
         title: req.body.title,
         author: req.body.author,
         date: date,
-        eventDate: eDate,
+        eventDate: date,
         eventTime: eTime,
         category: req.body.category,
         tags: req.body.tags,
@@ -98,7 +100,7 @@ router.post('/submitEvent', (req, res) => {
             date: -1
         })
         .then(results => {
-            res.render('submitEvent', {
+            res.render('event', {
                 events: results,
                 title: 'Submitted Event'
             });
@@ -134,6 +136,8 @@ router.get('/blog', (req, res) => {
 });
 
 router.get('/createPost', (req, res) => {
+    const permission = ac.can(req.user.role).createAny('event');
+    if (permission.granted) {
     const title = req.body.title;
 
     Category.find() 
@@ -145,6 +149,7 @@ router.get('/createPost', (req, res) => {
                 });
         })
         .catch(err => console.log(err));
+    }
 });
 
 router.post('/submitPost', (req, res) => {
@@ -176,7 +181,7 @@ router.post('/submitPost', (req, res) => {
         .then(results => {
             res.render('blog', {
                 posts: results,
-                title: 'Submitted blog'
+                title: 'Submitted Blog'
             });
         })
         .catch(err => console.log(err));
@@ -234,10 +239,7 @@ router.get('/register', (req, res) => {
     });
 });
 
-
-
-
-router.post('/add-register', (req, res) => {
+router.post('/submitRegister', (req, res) => {
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const address1 = req.body.address1;
@@ -279,7 +281,7 @@ router.post('/add-register', (req, res) => {
         }
     });
 
-    router.post('/check-signIn', (req, res) => {
+    router.post('/checkSignin', (req, res) => {
         const email = req.body.email;
         const password = req.body.password;
         User.findOne({
@@ -302,7 +304,7 @@ router.post('/add-register', (req, res) => {
                     } else {
                         res.render('/', {
                             user: doc,
-                            title: 'Lytle Animal Allies Homepage',
+                            title: 'Signed into Lytle Animal Allies Homepage',
                         });
 
                     }

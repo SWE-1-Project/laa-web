@@ -3,11 +3,6 @@ const Schema = mongoose.Schema;
 
 //What to store in the database
 const userSchema = new Schema ({
-    username: {
-        type: String,
-        required: true,
-        trim: true
-    },
     email: {
         type: String,
         required: true,
@@ -20,7 +15,7 @@ const userSchema = new Schema ({
     role: {
         type: String,
         default: 'basic',
-        enum: ["basic", "contributor", "admin"]
+        enum: ['basic', 'contributor', 'admin']
     }, 
     accessToken: {
         type: String
