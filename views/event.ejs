@@ -15,13 +15,12 @@
             <div class="events-wrapper">
                <% for (e of events) { %>
                <div class="event active">
-                  <i class="fas fa-burn hot"></i>
+                  <i class="far fa-bookmark hot"></i>
                   <h4 class="event__point">
                      <span><%= e.eventTime%></span>
-                     <span></span>
-                     <span><%= e.title%></span>
+                     <span style="margin-left: 2rem;"><%= e.title%></span>
                   </h4>
-                  <span class="event__duration">in 30 minutes.</span>
+                  <span class="event__duration" style="margin-right: 2rem;">starts in <%= (Math.abs(new Date() - e.eventDate) / 3600000).toFixed(1); %> hours</span>
                   <p class="event__description">
                      <%= e.content %>
                   </p>
