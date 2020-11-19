@@ -13,9 +13,11 @@ const Tag = require('../models/tag');
 
 const Contact = require('../models/contact');
 const Role = require('../models/role');
+const { AccessControl } = require('accesscontrol');
 //var db = require('../models');
 
 const router = express.Router();
+const ac = new AccessControl();
 
 router.get('/', (req, res) => {
 
@@ -308,7 +310,6 @@ router.post('/submitRegister', (req, res) => {
                             user: doc,
                             title: 'Signed into Lytle Animal Allies Homepage',
                         });
-
                     }
                 });
             }
