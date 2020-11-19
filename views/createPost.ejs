@@ -1,21 +1,5 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>>
-<script>
-    function arrayFunction() {
-        var checkboxes = document.getElementsByName("category");
-        console.log(checkboxes);
-        var checkboxesChecked = [];
-
-        for (var i = 0; i < checkboxes.length; i++) {
-
-            if (checkboxes[i].checked) {
-                checkboxesChecked.push(checkboxes[i].value);
-            }
-        }
-
-        console.log(checkboxesChecked);
-    }
-</script>
 <div class="container view intro-2" style="height: 6em;"></div>
 <div id="calendar" class="page container article section-bg">
     <div class="section-title">
@@ -62,10 +46,13 @@
                             <h6>Categories</h6>
                         </label>
                         <hr>
+                        <% for (c of categories) {%>
                         <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" name="category[]" id="newsInput" />
-                            <label class="form-check-label" for="newsInput">News</label>
+                            <input type="radio" class="form-check-input" name="category" id="<%= c.title%>Input" />
+                            <label class="form-check-label" for="<%= c.title%>Input" value="<%= c.title%>"><%= c.title%></label>
                         </div>
+                        <% } %>
+                        
                     </div>
 
                     <div class="col-5 border border-quaternary-color rounded">
@@ -84,9 +71,8 @@
                         </label>
                         <hr>
                         <div class="form-group">
-                            <label for="tagsInput">Include any tags that would relate to this article.
-                                At a minimum include the tags:</label>
-                            <input type='text' name='tags' class="form-control" id="tagsInput" placeholder="#Tags*"
+                            <label for="tagsInput">Include any tags that would relate to this article.</label>
+                            <input type='text' name='tag' class="form-control" id="tagsInput" placeholder="#Tags*"
                                 required>
                         </div>
                     </div>

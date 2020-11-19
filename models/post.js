@@ -5,7 +5,8 @@ var postSchema = new mongoose.Schema ({
         type: String
     },
     author: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
     },
     date: {
         type: String
@@ -16,13 +17,13 @@ var postSchema = new mongoose.Schema ({
     content: {
         type: String
     },
-    category: {
-        type: Array,
-        default: []
+    titleCategory: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'category'
     },
-    tags: {
-        type: Array,
-        default: []
+    titleTag: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'tag'
     }
 });
 

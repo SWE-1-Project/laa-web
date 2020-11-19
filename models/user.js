@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //What to store in the database
-const UserSchema = new Schema ({
+const userSchema = new Schema ({
     username: {
         type: String,
         required: true,
@@ -39,7 +39,11 @@ const UserSchema = new Schema ({
         city: { type: String },
         state: {type: String },
         zipCode: { type: Number },
+    },
+    phoneNumber: {
+        type: String,
+        required: true
     }
 });
 
-module.exports = mongoose.model('user', UserSchema);
+module.exports = mongoose.model('user', userSchema);

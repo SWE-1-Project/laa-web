@@ -2,16 +2,19 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const Pet = require('./api-request');
+const mongoose = require('mongoose');
 
-//const userController = require('../controllers/userController');
+//const connBlogDB = mongoose.connect('mongodb://localhost:27017/BlogDB');
 
-const Category = require('../models/category');
-const Contact = require('../models/contact');
-const Event = require('../models/event');
 const Post = require('../models/post');
-//const Role = require('../role');
-const Tag = require('../models/tag');
+const Event = require('../models/event');
 const User = require('../models/user');
+const Category = require('../models/category');
+const Tag = require('../models/tag');
+
+const Contact = require('../models/contact');
+//const Role = require('../role');
+//var db = require('../models');
 
 const router = express.Router();
 
@@ -78,34 +81,41 @@ router.post('/submitEvent', (req, res) => {
 router.get('/blog', (req, res) => {
     const dateFormat = require('dateformat');
     const date = dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM TT");
-    const post = new Post({
-        title: req.body.title,
-        author: req.body.author,
-        date: date,
-        category: req.body.category,
-        tags: req.body.tags,
-        mainImage: req.body.mainImage,
-        content: req.body.content
-    });
-    Post.find()
-        .sort({
-            date: -1
-        })
-        .then(results => {
-            res.render('blog', 
-            {
-                posts: results,
-                title: 'Blog'
-            });
+    
+    Post.find().sort({date: -1}).then(results => {
+        User.findOne({author: req.body.author}).then(user => {
+            Category.findOne({titleCategory: req.body.titleCategory}).then(category => {
+                Tag.findOne({titleTag: req.body.titleTag}).then(tag => {
+                    res.render('blog',
+                    {
+                        posts: results,
+                        users: user,
+                        categories: category,
+                        tags: tag,
+                        title: 'Blog'
+                    });
+                })
+                .catch(err => console.log(err));
+            })
+            .catch(err => console.log(err));
         })
         .catch(err => console.log(err));
-
+    })      
+    .catch(err => console.log(err));    
 });
 
 router.get('/createPost', (req, res) => {
-    res.render('createPost', {
-        title: 'Create a Post'
-    });
+    const title = req.body.title;
+
+    Category.find() 
+        .then(results => {
+            res.render('createPost', 
+                {
+                    categories: results,
+                    title: 'Blog'
+                });
+        })
+        .catch(err => console.log(err));
 });
 
 router.post('/submitPost', (req, res) => {
@@ -114,14 +124,18 @@ router.post('/submitPost', (req, res) => {
     const date = dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM TT");
     const post = new Post({
         title: req.body.title,
-        //author: req.body.author,
+        author: req.body.author,
         date: date,
-        category: req.body.category,
-        tags: req.body.tags,
         mainImage: req.body.mainImage,
         content: req.body.content
     });
-    Post.collection.insertOne(post)
+    const category = new Category ({
+        title: req.body.title
+    });
+    const tag = new Tag ({
+        title: req.body.title
+    });
+    Post.collection.insertOne(post, category, tag)
         .then(result => {
             console.log('Insertion Success!');
         })
@@ -140,6 +154,45 @@ router.post('/submitPost', (req, res) => {
 
 });
 
+router.get('/createCategory', (req, res) => {
+    const title = req.body.title;
+
+    Category.find() 
+        .then(results => {
+            res.render('createCategory', 
+                {
+                    categories: results,
+                    title: 'Create Category'
+                });
+        })
+        .catch(err => console.log(err));
+});
+
+router.post('/submitCategory', (req, res) => {
+    // Use schema model
+    const category = new Category({
+        title: req.body.title,
+        slug: req.body.slug,
+        description: req.body.description
+    });
+    Category.collection.insertOne(category)
+        .then(result => {
+            console.log('Insertion Success!');
+        })
+        .catch(err => console.log(err));
+    Category.find()
+        .then(results => {
+            res.render('submitCategory', {
+                categories: results,
+                title: 'Submitted Category'
+            });
+        })
+        .catch(err => console.log(err));
+
+});
+
+
+
 router.get('/adopt', (req, res) => {
     res.render('adopt', {
         title: 'Adoptions'
@@ -151,6 +204,8 @@ router.get('/register', (req, res) => {
         title: 'Register'
     });
 });
+
+
 
 
 router.post('/add-register', (req, res) => {
@@ -226,6 +281,8 @@ router.post('/add-register', (req, res) => {
             }
         });
     });
+
+    
 
 
     router.post('/register', userController.signup);

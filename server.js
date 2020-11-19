@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const pagesRouter = require('./controllers/pages');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const User = require('./models/user')
 
 require("dotenv").config({
   path: path.join(__dirname, "../.env")
@@ -31,12 +30,18 @@ app.use(async (req, res, next) => {
   } 
  });
 */
-mongoose.connect('mongodb://localhost:27017/BlogDB', {useNewUrlParser: true, useUnifiedTopology: true})
+const connBlogDB = mongoose.connect('mongodb://localhost:27017/BlogDB', {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => {
         app.listen(3000, () => {
             console.log('MongoDB connected. Express server is running')
     });
 })
+
+const Post = require('./models/post')(connBlogDB);
+const Event = require('./models/event')(connBlogDB);
+const User = require('./models/user')(connBlogDB);
+const Category = require('./models/category')(connBlogDB);
+const Tag = require('./models/tag')(connBlogDB);
 
 /*//Gives error for jsonwebtoken
 //Base server file
